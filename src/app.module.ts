@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { variables } from './config/variables';
+import { variables } from './config/Variables';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 // import { UsersModule } from './users/users.module';
