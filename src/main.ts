@@ -12,7 +12,6 @@ async function bootstrap() {
     .setDescription('Documentaticion de la API')
     .setVersion('1.0')
     .addTag('auth')
-    // .addTag('items')
     .addTag('heroes')
     .build();
 
@@ -22,6 +21,10 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
   await app.listen(process.env.PORT || 8080);
 }
 bootstrap();

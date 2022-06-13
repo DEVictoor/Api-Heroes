@@ -18,7 +18,15 @@ export class AuthService {
     const { username, password } = createAuthDto;
     const findUser = await this.userModel.findOne({ username });
     if (findUser)
-      throw new HttpException({ status: HttpStatus.BAD_REQUEST, message: ['El usuario ya existe'], error: 'Bad request' }, HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          message: ['El usuario ya existe'],
+          error: 'Bad request',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+
     const plainToHash = await hash(password, 10);
     createAuthDto = { ...createAuthDto, password: plainToHash };
     const userCreated = await this.userModel.create(createAuthDto);
@@ -28,9 +36,26 @@ export class AuthService {
   async login(loginAuthDto: LoginAuthDto) {
     const { username, password } = loginAuthDto;
     const findUser = await this.userModel.findOne({ username });
-    if (!findUser) throw new HttpException({ status: HttpStatus.NOT_FOUND, message: ['El usuario no existe'], error: 'Not found' }, HttpStatus.NOT_FOUND);
+    if (!findUser)
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          message: ['El usuario no existe'],
+          error: 'Not found',
+        },
+        HttpStatus.NOT_FOUND,
+      );
     const checkPasssword = await compare(password, findUser.password);
-    if (!checkPasssword) throw new HttpException({ status: HttpStatus.UNAUTHORIZED, message: ['Contraseña incorrecta'], error: 'Unauthorized' }, HttpStatus.UNAUTHORIZED);
+    if (!checkPasssword)
+      throw new HttpException(
+        {
+          status: HttpStatus.UNAUTHORIZED,
+          message: ['Contraseña incorrecta'],
+          error: 'Unauthorized',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+
     const payload = { id: findUser.id };
     console.log(process.env.SECRETE_KEY_JWT);
     const token = await this.jwtService.sign(payload);
