@@ -9,28 +9,10 @@ export class Heroe {
   name: string;
 
   @Prop()
-  lastName: string;
+  description: string;
 
   @Prop()
-  birthday: Date;
-
-  @Prop()
-  placeBirth: string;
-
-  @Prop()
-  height: string;
-
-  @Prop()
-  spouce: string;
-
-  @Prop()
-  children: string;
-
-  @Prop()
-  parents: string;
-
-  @Prop()
-  observations: string;
+  edad: number;
 
   @Prop()
   image: string;
