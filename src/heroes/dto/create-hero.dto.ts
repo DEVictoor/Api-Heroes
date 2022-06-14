@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsDate } from 'class-validator';
 
 export class CreateHeroDto {
   @ApiProperty()
@@ -8,12 +8,36 @@ export class CreateHeroDto {
   name: string;
 
   @ApiProperty()
-  @IsNumber()
-  edad: number;
+  @IsString()
+  lastName: string;
+
+  @ApiProperty()
+  @IsDate()
+  birthday: Date;
 
   @ApiProperty()
   @IsString()
-  desription: string;
+  placeBirth: string;
+
+  @ApiProperty()
+  @IsString()
+  height: string;
+
+  @ApiProperty()
+  @IsString()
+  spouce: string;
+
+  @ApiProperty()
+  @IsString()
+  children: string;
+
+  @ApiProperty()
+  @IsString()
+  parents: string;
+
+  @ApiProperty()
+  @IsString()
+  observations: string;
 
   @ApiProperty()
   @IsString()

@@ -21,6 +21,12 @@ export class AuthController {
     return this.authService.login(loginAuthDto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Post('refresh')
+  refreshToken() {
+    return this.authService.refreshToken();
+  }
+
   // @UseGuards(JwtAuthGuard)
   // @Get()
   // findAll() {

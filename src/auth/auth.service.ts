@@ -73,4 +73,8 @@ export class AuthService {
   remove(id: number) {
     return `This action removes a #${id} auth`;
   }
+
+  refreshToken() {
+    return 'This action returns a new token';
+  }
 }
