@@ -57,9 +57,9 @@ export class AuthService {
       );
 
     const payload = { id: findUser.id };
-    console.log(process.env.SECRETE_KEY_JWT);
+//    console.log(process.env.SECRETE_KEY_JWT);
     const token = await this.jwtService.sign(payload);
-    return { token };
+    return { token, uid: findUser.id };
   }
 
   async findAll() {
