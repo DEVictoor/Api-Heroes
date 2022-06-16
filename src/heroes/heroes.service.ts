@@ -28,11 +28,9 @@ export class HeroesService {
   }
 
   async update(id: string, updateHeroDto: UpdateHeroDto) {
-    const updateById = await this.heroeModule.findByIdAndUpdate(
-      id,
-      updateHeroDto,
-    );
-    return updateById;
+    await this.heroeModule.findByIdAndUpdate(id, updateHeroDto);
+    const updated = await this.heroeModule.findById(id);
+    return updated;
   }
 
   async remove(id: string) {
